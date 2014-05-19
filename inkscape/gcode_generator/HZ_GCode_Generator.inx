@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <_name>HydroZones PIL bioprinter G-Code Output</_name>
+  <id>nl.protospace.hydrozones.inkscape.nc</id>
+  <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
+  <dependency type="executable" location="extensions">HZ_GCode_Generator.py</dependency>
+  <dependency type="executable" location="extensions">inkex.py</dependency>
+  <param name="tab" type="notebook">
+    <page name="tab1" _gui-text="printer Settings">
+      <param name="travel-feedrate" type="float" min="1.0" max="200.0" _gui-text="XY axes travel feedrate in mm/sec.">33.33</param>
+      <param name="xy-feedrate" type="float" min="1.0" max="200.0" _gui-text="XY axes feedrate in mm/sec for first extruder.">10.0</param>
+      <param name="z-height" type="float" min="0.0" max="110.0" _gui-text="height of each layer in mm.">0.2</param>
+      <param name="thread-width" type="float" min="0.00" max="6.00" _gui-text="Default width of each path in mm.">1.2</param>
+      <param name="filament" type="float" min="0.00" max="100.00" _gui-text="diameter of the (virtual) filament used for E calculations,in mm.">8.5</param>
+      <param name="temp" type="int" min="-1" max="250" _gui-text="temperature to print at.">0</param>
+    </page>
+    <page name="tab2" _gui-text="Dual extruder Settings">
+      <param name="ex1color" type="string" _gui-text="color for extruder1 (default).">#0000ff</param>
+      <param name="ex2color" type="string" _gui-text="color for extruder2.">#ff0000</param>
+      <param name="ex2offsetX" type="float" min="-100.0" max="100.0" _gui-text="X-offset of the 2nd extruder in mm.">83.5</param>
+      <param name="ex2offsetY" type="float" min="-100.0" max="100.0" _gui-text="Y-offset of the 2nd extruder in mm.">0.0</param>
+      <param name="ex2offsetZ" type="float" min="-100.0" max="100.0" _gui-text="Z-offset of the 2nd extruder in mm.">0.0</param>
+      <param name="ex2feedrate" type="float" min="-200.0" max="200.0" _gui-text="feedrate in mm/sec of the 2nd extruder.">20.0</param>
+      <param name="ex2Ainc" type="float" min="0.0" max="200.0" _gui-text="A coordinate increment of the 2nd extruder.">0.1</param>
+    </page>
+    <page name="gcode" _gui-text="Start and Stop routines">
+        <_param name="startGcode" type="string" xml:space="preserve">G17 G21 G40 G49 G54 G80 G90 G94 M5 M9 F300</_param>
+      <param name="g28" type="boolean" _gui-text="home the printer before printing">false</param>
+      <param name="sort" type="boolean" _gui-text="(try) optimize path">false</param>
+    </page>
+    <page name="help" _gui-text="Help">
+      <_param name="ext_help" type="description" xml:space="preserve">HydroZones PIL bioprinter G-Code Output.
+
+- All text must be converted to paths.
+- Curves are approximated with line segments.
+
+More Info: http://github.com/martymcguire/inkscape-unicorn/</_param>
+    </page>
+  </param>
+
+  <output>
+    <extension>.nc</extension>
+    <mimetype>application/x-gcode</mimetype>
+    <_filetypename>HydroZones PIL bio-printer G-Code (*.nc)</_filetypename>
+    <_filetypetooltip>G-Code for HydroZones PIL bio-printer</_filetypetooltip>
+    <dataloss>true</dataloss>
+  </output>
+  <script>
+    <command reldir="extensions" interpreter="python">HZ_GCode_Generator.py</command>
+  </script>
+</inkscape-extension>

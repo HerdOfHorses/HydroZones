@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<_name>Scaffold Generator</_name>
+	<id>hydrozones.ScaffoldGenerator</id>
+	<dependency type="executable" location="extensions">inkex.py</dependency>
+	<dependency type="executable" location="extensions">hz_generate_scaffold.py</dependency>
+	<param name="type" type="enum" _gui-text="Scaffold Type:">
+		<item value="circle">Circle</item>
+		<item value="square">Square</item>
+	</param>
+	<param name="radius" type="int" _gui-text="radius:" min="0" max="140">12</param>
+	<param name="cx" type="int" _gui-text="center X:" min="0" max="200">20</param>
+	<param name="cy" type="int" _gui-text="center Y:" min="0" max="140">60</param>
+    <param name="spacing" type="float" _gui-text="spacing:" min="0.0" max="10.0">2.2</param>
+    <param name="layers" type="int" _gui-text="layers:" min="1" max="1000">2</param>
+	<effect>
+		<object-type>all</object-type>
+		<effects-menu>
+			<submenu _name="HydroZones"/>
+		</effects-menu>
+	</effect>
+	<script>
+		<command reldir="extensions" interpreter="python">hz_generate_scaffold.py</command>
+	</script>
+</inkscape-extension>
